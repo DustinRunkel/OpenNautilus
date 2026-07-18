@@ -420,7 +420,7 @@
 #define configASSERT( x )         \
 if( ( x ) == 0 )              \
 {                             \
-    taskDISABLE_INTERRUPTS(); \
+    portDISABLE_INTERRUPTS(); \
     for( ; ; )                \
         ;                         \
 }
@@ -509,9 +509,7 @@ if( ( x ) == 0 )              \
 /* Set configNUMBER_OF_CORES to the number of available processor cores.
  * Defaults to 1 if left undefined. */
 
-/*
- # define configNUMBER_OF_CORES*                     [Num of available cores]
- */
+#define configNUMBER_OF_CORES      2                    
 
 /* When using SMP (i.e. configNUMBER_OF_CORES is greater than one), set
  * configRUN_MULTIPLE_PRIORITIES to 0 to allow multiple tasks to run
@@ -520,7 +518,7 @@ if( ( x ) == 0 )              \
  * is able to run. If configRUN_MULTIPLE_PRIORITIES is set to 1, multiple tasks
  * with different priorities may run simultaneously - so a higher and lower
  * priority task may run on different cores at the same time. */
-#define configRUN_MULTIPLE_PRIORITIES             0
+#define configRUN_MULTIPLE_PRIORITIES             1
 
 /* When using SMP (i.e. configNUMBER_OF_CORES is greater than one), set
  * configUSE_CORE_AFFINITY to 1 to enable core affinity feature. When core
@@ -528,7 +526,7 @@ if( ( x ) == 0 )              \
  * vTaskCoreAffinityGet APIs can be used to set and retrieve which cores a task
  * can run on. If configUSE_CORE_AFFINITY is set to 0 then the FreeRTOS
  * scheduler is free to run any task on any available core. */
-#define configUSE_CORE_AFFINITY                   0
+#define configUSE_CORE_AFFINITY                   1
 
 /* When using SMP with core affinity feature enabled, set
  * configTASK_DEFAULT_CORE_AFFINITY to change the default core affinity mask for
@@ -667,7 +665,7 @@ if( ( x ) == 0 )              \
 #define INCLUDE_uxTaskGetStackHighWaterMark    0
 #define INCLUDE_xTaskGetIdleTaskHandle         0
 #define INCLUDE_eTaskGetState                  0
-#define INCLUDE_xTimerPendFunctionCall         0
+#define INCLUDE_xTimerPendFunctionCall         1
 #define INCLUDE_xTaskAbortDelay                0
 #define INCLUDE_xTaskGetHandle                 0
 #define INCLUDE_xTaskResumeFromISR             1
